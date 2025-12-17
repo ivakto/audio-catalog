@@ -3,6 +3,7 @@ package entity;
 import java.util.UUID;
 
 public abstract class AudioItem {
+    private String title;
     private String id;
     private String genre;
     private int durationSec;
@@ -10,7 +11,8 @@ public abstract class AudioItem {
     private String author;
     private int releaseYear;
 
-    public AudioItem(String genre, int durationSec, String category, String author, int releaseYear) {
+    public AudioItem(String genre, int durationSec, String category, String author, int releaseYear, String title) {
+
         if (genre == null || genre.isEmpty()) {
             throw new IllegalArgumentException("Genre cannot be null or empty!");
         };
@@ -26,7 +28,11 @@ public abstract class AudioItem {
         if (releaseYear < 0) {
             throw new IllegalArgumentException("Release year cannot be negative!");
         };
+        if (title == null || title.isEmpty()) {
+            throw new IllegalArgumentException("Author cannot be null or empty!");
+        };
 
+        this.title = title;
         this.id = UUID.randomUUID().toString(); // Правя го още в горния клас
         this.genre = genre;
         this.durationSec = durationSec;
@@ -82,4 +88,8 @@ public abstract class AudioItem {
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
 }

@@ -4,27 +4,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Playlist extends AudioItem implements PlaylistInsertable{
-    private String playlistName;
     private boolean isPublic;
     private ArrayList<PlaylistInsertable> itemsList;
 
-    public Playlist(String genre, int durationSec, String category, String author, int releaseYear, String playlistName, boolean isPublic, ArrayList<PlaylistInsertable> itemsList) {
-        super(genre, durationSec, category, author, releaseYear);
-        if (playlistName == null || playlistName.isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null!");
-        }
-        this.playlistName = playlistName;
+    public Playlist(String genre, int durationSec, String category, String title, String author, int releaseYear, boolean isPublic, ArrayList<PlaylistInsertable> itemsList) {
+        super(genre, durationSec, category, author, releaseYear, title);
+
         this.isPublic = isPublic;
         this.itemsList = Objects.requireNonNullElseGet(itemsList, ArrayList::new);
     }
 
-    public String getPlaylistName() {
-        return playlistName;
-    }
-
-    public void setPlaylistName(String playlistName) {
-        this.playlistName = playlistName;
-    }
 
     public boolean isPublic() {
         return isPublic;
