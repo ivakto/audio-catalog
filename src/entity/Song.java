@@ -5,8 +5,8 @@ public class Song extends AudioItem implements PlaylistInsertable{
     private int rating;
 
 
-    public Song(String genre, int durationSec, String category, String author, int releaseYear, int rating, String title, String lyrics, String songName) {
-        super(genre, durationSec, category, author, releaseYear, title);
+    public Song(String title, String author, String genre, int durationSec, String category, int releaseYear, int rating, String lyrics) {
+        super(title, author, genre, durationSec, category, releaseYear);
 
         if (rating < 0 || rating > 10) {
             throw new IllegalArgumentException("Rating must be between 0 and 10!");

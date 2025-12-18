@@ -4,8 +4,8 @@ public class EBook extends AudioItem implements PlaylistInsertable{
     private int numberOfChapters;
     private String language;
 
-    public EBook(String genre, int durationSec, String category, String title, String author, int releaseYear, int numberOfChapters, String language) {
-        super(genre, durationSec, category, author, releaseYear, title);
+    public EBook(String title, String author, String genre, int durationSec, String category, int releaseYear, int numberOfChapters, String language) {
+        super(title, author, genre, durationSec, category, releaseYear);
         if (numberOfChapters < 0) {
             throw new IllegalArgumentException("Number of chapters cannot be negative!");
         }

@@ -5,8 +5,8 @@ public class Podcast extends AudioItem implements PlaylistInsertable{
     private int episodesNum;
     private String description;
 
-    public Podcast(String genre, int durationSec, String category, String author, String title, int releaseYear, int episodesNum, String description) {
-        super(genre, durationSec, category, author, releaseYear, title);
+    public Podcast(String title, String author, String genre, int durationSec, String category, int releaseYear, int episodesNum, String description) {
+        super(title, author, genre, durationSec, category, releaseYear);
 
         if (episodesNum < 0) {
             throw new IllegalArgumentException("Number of episodes cannot be negative!");

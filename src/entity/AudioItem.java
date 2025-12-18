@@ -11,7 +11,7 @@ public abstract class AudioItem {
     private String author;
     private int releaseYear;
 
-    public AudioItem(String genre, int durationSec, String category, String author, int releaseYear, String title) {
+    public AudioItem(String title, String author, String genre, int durationSec, String category, int releaseYear) {
 
         if (genre == null || genre.isEmpty()) {
             throw new IllegalArgumentException("Genre cannot be null or empty!");

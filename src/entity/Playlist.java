@@ -7,8 +7,8 @@ public class Playlist extends AudioItem implements PlaylistInsertable{
     private boolean isPublic;
     private ArrayList<PlaylistInsertable> itemsList;
 
-    public Playlist(String genre, int durationSec, String category, String title, String author, int releaseYear, boolean isPublic, ArrayList<PlaylistInsertable> itemsList) {
-        super(genre, durationSec, category, author, releaseYear, title);
+    public Playlist(String title, String author, String genre, int durationSec, String category, int releaseYear, boolean isPublic, ArrayList<PlaylistInsertable> itemsList) {
+        super(title, author, genre, durationSec, category, releaseYear);
 
         this.isPublic = isPublic;
         this.itemsList = Objects.requireNonNullElseGet(itemsList, ArrayList::new);

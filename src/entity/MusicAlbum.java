@@ -7,8 +7,8 @@ public class MusicAlbum extends AudioItem{
      private String label;
      private ArrayList<Song> songsList;
 
-    public MusicAlbum(String genre, int durationSec, String category, String title, String author, int releaseYear, String label, ArrayList<Song> songsList) {
-        super(genre, durationSec, category, author, releaseYear, title);
+    public MusicAlbum(String title, String author, String genre, int durationSec, String category, int releaseYear, String label, ArrayList<Song> songsList) {
+        super(title, author, genre, durationSec, category, releaseYear);
         if (label == null || label.isEmpty()) {
             throw new IllegalArgumentException("Label cannot be null!");
         }
