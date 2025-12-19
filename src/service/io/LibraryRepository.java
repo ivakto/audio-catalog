@@ -73,6 +73,11 @@ public class LibraryRepository {
 
     public static List<AudioItem> load() {
         List<AudioItem> library = new ArrayList<>();
+        File file = new File(FILE_NAME);
+
+        if (!file.exists()) {
+            return library;
+        }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             reader.readLine();
@@ -91,7 +96,6 @@ public class LibraryRepository {
                 String author = data[6];
                 int year = Integer.parseInt(data[7]);
 
-                // Екстрите (ако ги няма, даваме празен текст)
                 String extra1 = (data.length > 8) ? data[8] : "";
                 String extra2 = (data.length > 9) ? data[9] : "0";
 
@@ -121,7 +125,7 @@ public class LibraryRepository {
                 }
 
                 if (item != null) {
-                    // item.setId(id); - тука дава грешка
+                    item.setId(id);
                     library.add(item);
                 }
             }
