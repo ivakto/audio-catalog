@@ -1,4 +1,4 @@
-package service.utils;
+package utils;
 
 import entity.AudioItem;
 import java.util.Comparator;

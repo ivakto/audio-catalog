@@ -1,6 +1,6 @@
 package entity;
 
-import service.utils.Validator;
+import utils.Validator;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -11,9 +11,8 @@ public class MusicAlbum extends AudioItem{
 
     public MusicAlbum(String title, String author, String genre, int durationSec, String category, int releaseYear, String label, ArrayList<Song> songsList) {
         super(title, author, genre, durationSec, category, releaseYear);
-        Validator.validateString(label, "Label");
 
-        this.label = label;
+        this.label = Validator.validateString(label, "Label");
         this.songsList = Objects.requireNonNullElseGet(songsList, ArrayList::new);
 
     }

@@ -1,6 +1,6 @@
 package entity;
 
-import service.utils.Validator;
+import utils.Validator;
 
 public class Song extends AudioItem implements PlaylistInsertable{
     private String lyrics;
@@ -10,11 +10,8 @@ public class Song extends AudioItem implements PlaylistInsertable{
     public Song(String title, String author, String genre, int durationSec, String category, int releaseYear, int rating, String lyrics) {
         super(title, author, genre, durationSec, category, releaseYear);
 
-        Validator.validateRating(rating, "Rating");
-        Validator.validateString(lyrics, "Lyrics");
-
-        this.rating = rating;
-        this.lyrics = lyrics;
+        this.rating = Validator.validateRating(rating, "Rating");
+        this.lyrics = Validator.validateString(lyrics, "Lyrics");
     }
 
     public String getLyrics() {

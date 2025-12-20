@@ -1,6 +1,6 @@
 package entity;
 
-import service.utils.Validator;
+import utils.Validator;
 
 import java.util.UUID;
 
@@ -15,21 +15,13 @@ public abstract class AudioItem {
 
     public AudioItem(String title, String author, String genre, int durationSec, String category, int releaseYear) {
 
-        Validator.validateString(genre, "Genre");
-        Validator.validateString(category, "Category");
-        Validator.validateString(author, "Author");
-        Validator.validateString(title, "Title");
-
-        Validator.validatePositive(durationSec, "Duration");
-        Validator.validatePositive(releaseYear, "Release year");
-
-        this.title = title;
-        this.id = UUID.randomUUID().toString(); // Правя го още в горния клас
-        this.genre = genre;
-        this.durationSec = durationSec;
-        this.category = category;
-        this.author = author;
-        this.releaseYear = releaseYear;
+        this.title = Validator.validateString(title, "Title");
+        this.id = UUID.randomUUID().toString();
+        this.genre = Validator.validateString(genre, "Genre");
+        this.durationSec = Validator.validatePositive(durationSec, "Duration");
+        this.category = Validator.validateString(category, "Category");
+        this.author = Validator.validateString(author, "Author");
+        this.releaseYear = Validator.validatePositive(releaseYear, "Release year");
     }
 
     public String getId() {

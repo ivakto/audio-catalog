@@ -1,6 +1,6 @@
 package entity;
 
-import service.utils.Validator;
+import utils.Validator;
 
 public class Podcast extends AudioItem implements PlaylistInsertable{
     private int episodesNum;
@@ -9,11 +9,8 @@ public class Podcast extends AudioItem implements PlaylistInsertable{
     public Podcast(String title, String author, String genre, int durationSec, String category, int releaseYear, int episodesNum, String description) {
         super(title, author, genre, durationSec, category, releaseYear);
 
-        Validator.validatePositive(episodesNum, "Numbers of episodes");
-        Validator.validateString(description, "Description");
-
-        this.episodesNum = episodesNum;
-        this.description = description;
+        this.episodesNum = Validator.validatePositive(episodesNum, "Number of episodes");
+        this.description = Validator.validateString(description, "Description");
     }
 
     public int getEpisodesNum() {

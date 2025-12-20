@@ -1,6 +1,6 @@
 package entity;
 
-import service.utils.Validator;
+import utils.Validator;
 
 public class EBook extends AudioItem implements PlaylistInsertable{
     private int numberOfChapters;
@@ -9,11 +9,8 @@ public class EBook extends AudioItem implements PlaylistInsertable{
     public EBook(String title, String author, String genre, int durationSec, String category, int releaseYear, int numberOfChapters, String language) {
         super(title, author, genre, durationSec, category, releaseYear);
 
-        Validator.validatePositive(numberOfChapters, "Chapters");
-        Validator.validateString(language, "Language");
-
-        this.numberOfChapters = numberOfChapters;
-        this.language = language;
+        this.numberOfChapters = Validator.validatePositive(numberOfChapters, "Chapters");
+        this.language = Validator.validateString(language, "Language");
     }
 
     public int getNumberOfChapters() {
