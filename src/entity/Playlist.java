@@ -30,4 +30,6 @@ public class Playlist extends AudioItem implements PlaylistInsertable{
     public void setItemsList(ArrayList<PlaylistInsertable> itemsList) {
         this.itemsList = itemsList;
     }
+
+
 }

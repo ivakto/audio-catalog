@@ -49,7 +49,7 @@ public abstract class AudioItem {
     }
 
     public String getCategory() {
-        return category;
+        return this.getClass().getSimpleName();
     }
 
     public void setCategory(String category) {
