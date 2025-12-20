@@ -9,9 +9,7 @@ import java.util.function.Function;
 public class Search {
     public static <T extends AudioItem, R> List <T> search(List<T> items, Function<T, R> getter, String searchTerm){
 
-        if (searchTerm == null || searchTerm.isEmpty()) {
-            return items;
-        }
+        Validator.validateString(searchTerm, "Search term");
 
         String searchTermLowerC = searchTerm.toLowerCase();
 
