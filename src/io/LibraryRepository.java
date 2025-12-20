@@ -1,4 +1,4 @@
-package service.io;
+package io;
 
 import entity.*;
 
@@ -51,7 +51,7 @@ public class LibraryRepository {
                         line.append(eBook.getLanguage());
                     }
                     case MusicAlbum musicAlbum -> {
-                        line.append(musicAlbum.getSongsList()).append(DELIMITER);
+                        line.append(musicAlbum.getSongsList().toString()).append(DELIMITER); // ВАЖНО
                         line.append(musicAlbum.getLabel());
                     }
                     case Podcast podcast -> {

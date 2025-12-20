@@ -1,5 +1,7 @@
 package entity;
 
+import service.utils.Validator;
+
 public class Song extends AudioItem implements PlaylistInsertable{
     private String lyrics;
     private int rating;
@@ -8,12 +10,8 @@ public class Song extends AudioItem implements PlaylistInsertable{
     public Song(String title, String author, String genre, int durationSec, String category, int releaseYear, int rating, String lyrics) {
         super(title, author, genre, durationSec, category, releaseYear);
 
-        if (rating < 0 || rating > 10) {
-            throw new IllegalArgumentException("Rating must be between 0 and 10!");
-        }
-        if (lyrics == null || lyrics.isEmpty()) {
-            throw new IllegalArgumentException("Lyrics cannot be empty!");
-        }
+        Validator.validateRating(rating, "Rating");
+        Validator.validateString(lyrics, "Lyrics");
 
         this.rating = rating;
         this.lyrics = lyrics;

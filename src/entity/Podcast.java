@@ -1,19 +1,16 @@
 package entity;
 
+import service.utils.Validator;
+
 public class Podcast extends AudioItem implements PlaylistInsertable{
-    private String podcastName;
     private int episodesNum;
     private String description;
 
     public Podcast(String title, String author, String genre, int durationSec, String category, int releaseYear, int episodesNum, String description) {
         super(title, author, genre, durationSec, category, releaseYear);
 
-        if (episodesNum < 0) {
-            throw new IllegalArgumentException("Number of episodes cannot be negative!");
-        }
-        if (description == null || description.isEmpty()) {
-            throw new IllegalArgumentException("Description cannot be null!");
-        }
+        Validator.validatePositive(episodesNum, "Numbers of episodes");
+        Validator.validateString(description, "Description");
 
         this.episodesNum = episodesNum;
         this.description = description;

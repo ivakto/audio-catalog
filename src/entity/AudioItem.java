@@ -1,5 +1,7 @@
 package entity;
 
+import service.utils.Validator;
+
 import java.util.UUID;
 
 public abstract class AudioItem {
@@ -13,24 +15,13 @@ public abstract class AudioItem {
 
     public AudioItem(String title, String author, String genre, int durationSec, String category, int releaseYear) {
 
-        if (genre == null || genre.isEmpty()) {
-            throw new IllegalArgumentException("Genre cannot be null or empty!");
-        };
-        if (category == null || category.isEmpty()) {
-            throw new IllegalArgumentException("Category cannot be null or empty!");
-        };
-        if (author == null || author.isEmpty()) {
-            throw new IllegalArgumentException("Author cannot be null or empty!");
-        };
-        if (durationSec < 0) {
-            throw new IllegalArgumentException("Duration cannot be negative!");
-        };
-        if (releaseYear < 0) {
-            throw new IllegalArgumentException("Release year cannot be negative!");
-        };
-        if (title == null || title.isEmpty()) {
-            throw new IllegalArgumentException("Author cannot be null or empty!");
-        };
+        Validator.validateString(genre, "Genre");
+        Validator.validateString(category, "Category");
+        Validator.validateString(author, "Author");
+        Validator.validateString(title, "Title");
+
+        Validator.validatePositive(durationSec, "Duration");
+        Validator.validatePositive(releaseYear, "Release year");
 
         this.title = title;
         this.id = UUID.randomUUID().toString(); // Правя го още в горния клас
@@ -93,7 +84,4 @@ public abstract class AudioItem {
 
     public void setTitle(String title) { this.title = title; }
 
-    public void setId(UUID id) {
-        this.id = id.toString();
-    }
 }
