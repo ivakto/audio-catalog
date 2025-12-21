@@ -25,7 +25,7 @@ public class AddMenu {
         System.out.println("2. Podcast");
         System.out.println("3. Audio Book");
         System.out.println("4. Music Album");
-        // System.out.println("5. Playlist");
+        System.out.println("5. Playlist");
         System.out.println("0. Back");
         System.out.print("Choose type: ");
 
@@ -37,6 +37,7 @@ public class AddMenu {
             case "2" -> creator = new PodcastCreator();
             case "3" -> creator = new EBookCreator();
             case "4" -> creator = new MusicAlbumCreator();
+            case "5" -> creator = new PlaylistCreator();
             case "0" -> { return; }
             default -> System.out.println("Invalid type.");
         }

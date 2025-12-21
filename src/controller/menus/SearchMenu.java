@@ -1,6 +1,7 @@
 package controller.menus;
 
 
+import controller.InputProvider;
 import entity.AudioItem;
 import service.LibraryService;
 import utils.ConsolePrinter;
@@ -12,10 +13,12 @@ import java.util.Scanner;
 public class SearchMenu {
     private final LibraryService service;
     private final Scanner scanner;
+    private final InputProvider inputProvider;
 
-    public SearchMenu(LibraryService service, Scanner scanner) {
+    public SearchMenu(LibraryService service, Scanner scanner, InputProvider inputProvider) {
         this.service = service;
         this.scanner = scanner;
+        this.inputProvider = inputProvider;
     }
 
     public void show() {
@@ -30,15 +33,7 @@ public class SearchMenu {
         String choice = scanner.nextLine();
         if (choice.equals("0")) return;
 
-        System.out.print("Enter text to search: ");
-        String query = scanner.nextLine();
-
-        try {
-            Validator.validateString(query, "Search query");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-            return;
-        }
+        String query = inputProvider.readString("Enter text to search: ");
 
         List<AudioItem> results = switch (choice) {
             case "1" -> service.search(AudioItem::getTitle, query);

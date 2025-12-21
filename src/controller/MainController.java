@@ -13,9 +13,11 @@ public class MainController {
     private final SearchMenu searchMenu;
     private final SortMenu sortMenu;
     private final FilterMenu filterMenu;
+    private final PlaylistMenu playlistMenu;
     private final Scanner scanner;
 
-    public MainController() {
+    public MainController(PlaylistMenu playlistMenu) {
+        this.playlistMenu = playlistMenu;
         this.scanner = new Scanner(System.in);
         InputProvider inputProvider = new InputProvider(scanner);
         LibraryService libraryService = new LibraryService();
@@ -41,6 +43,7 @@ public class MainController {
             System.out.println("4. Search...");
             System.out.println("5. Filter...");
             System.out.println("6. Sort...");
+            System.out.println("7. Manage Playlists");
             System.out.println("0. Exit");
             System.out.print("Choose option: ");
 
@@ -53,6 +56,7 @@ public class MainController {
                 case "4" -> searchMenu.show();
                 case "5" -> filterMenu.show();
                 case "6" -> sortMenu.show();
+                case "7" -> playlistMenu.show();
                 case "0" -> {
                     System.out.println("Goodbye!");
                     running = false;

@@ -1,23 +1,20 @@
 package controller.menus;
 
+import controller.InputProvider;
 import service.LibraryService;
-
-import java.util.Scanner;
 
 public class RemoveMenu {
     private final LibraryService libraryService;
-    private final Scanner scanner;
+    private final InputProvider inputProvider;
 
-    public RemoveMenu(LibraryService libraryService, Scanner scanner) {
+    public RemoveMenu(LibraryService libraryService,InputProvider inputProvider) {
         this.libraryService = libraryService;
-        this.scanner = scanner;
+        this.inputProvider = inputProvider;
     }
 
     public void show() {
         System.out.println("\nREMOVE ITEM");
-        System.out.print("Enter the exact title of the item to remove: ");
-        String title = scanner.nextLine();
-
+        String title = inputProvider.readString("Enter the exact title of the item to remove: ");
         libraryService.removeAudioItem(title);
     }
 }

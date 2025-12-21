@@ -17,8 +17,8 @@ public class MusicAlbumCreator implements ItemCreator{
         String author = input.readString("Artist: ");
         String genre = input.readString("Genre: ");
         int year = input.readInt("Release Year: ");
-        String label = input.readString("Record Label: ");
 
+        String label = input.readString("Record Label: ");
         ArrayList<Song> songs = new ArrayList<>();
 
         System.out.println("\nADD SONGS TO ALBUM ");
