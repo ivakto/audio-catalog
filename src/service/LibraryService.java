@@ -1,6 +1,5 @@
 package service;
 
-
 import entity.AudioItem;
 import utils.Filter;
 import utils.Search;
@@ -28,7 +27,6 @@ public class LibraryService {
     }
 
     public void removeAudioItem(String title) {
-        // removeIf връща true, ако е намерено и изтрито нещо
         boolean removed = library.removeIf(item -> item.getTitle().equalsIgnoreCase(title));
 
         if (removed) {
