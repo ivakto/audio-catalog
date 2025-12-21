@@ -1,5 +1,6 @@
 package controller.menus;
 
+import controller.InputProvider;
 import entity.AudioItem;
 import service.LibraryService;
 import utils.ConsolePrinter;
@@ -12,7 +13,7 @@ public class SortMenu {
     private final LibraryService service;
     private final Scanner scanner;
 
-    public SortMenu(LibraryService service, Scanner scanner) {
+    public SortMenu(LibraryService service, Scanner scanner, InputProvider inputProvider) {
         this.service = service;
         this.scanner = scanner;
     }

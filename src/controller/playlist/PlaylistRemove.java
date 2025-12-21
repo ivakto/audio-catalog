@@ -1,22 +1,27 @@
 package controller.playlist;
 
+import controller.InputProvider;
 import entity.AudioItem;
 import entity.Playlist;
 
 import java.util.Scanner;
 
 public class PlaylistRemove {
-    private final Scanner scanner;
+    private final InputProvider inputProvider;
 
-    public PlaylistRemove(Scanner scanner) {
-        this.scanner = scanner;
+    public PlaylistRemove(InputProvider inputProvider) {
+        this.inputProvider = inputProvider;
     }
 
     public void remove(Playlist playlist) {
-        System.out.println("Enter title of item to remove: ");
-        String titleToRemove = scanner.nextLine();
+        String titleToRemove = inputProvider.readString("Enter title of item to remove: ");
 
-        boolean removed = playlist.getItemsList().removeIf(element -> ((AudioItem)element).getTitle().equalsIgnoreCase(titleToRemove));
+        boolean removed = playlist.getItemsList().removeIf(element -> {
+            if (element instanceof AudioItem) {
+                return ((AudioItem) element).getTitle().equalsIgnoreCase(titleToRemove);
+            }
+            return false;
+        });
         // връща true/false
 
         if (removed) {

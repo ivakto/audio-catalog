@@ -40,6 +40,19 @@ public class LibraryService {
         return new ArrayList<>(library);
     }
 
+    public AudioItem findAudioItem(String title) {
+        if (title == null || title.isEmpty()) {
+            return null;
+        }
+
+        for (AudioItem item : library) {
+            if (item.getTitle().equalsIgnoreCase(title)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public <R> List<AudioItem> search(Function<AudioItem, R> getter, String query) {
         return Search.search(library, getter, query);
     }

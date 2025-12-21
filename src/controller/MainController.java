@@ -1,6 +1,9 @@
 package controller;
 
 import controller.menus.*;
+import controller.playlist.PlaylistAdd;
+import controller.playlist.PlaylistRemove;
+import controller.playlist.PlaylistView;
 import service.LibraryService;
 
 import java.util.Scanner;
@@ -16,20 +19,24 @@ public class MainController {
     private final PlaylistMenu playlistMenu;
     private final Scanner scanner;
 
-    public MainController(PlaylistMenu playlistMenu) {
-        this.playlistMenu = playlistMenu;
+    public MainController() {
         this.scanner = new Scanner(System.in);
         InputProvider inputProvider = new InputProvider(scanner);
         LibraryService libraryService = new LibraryService();
 
-        this.addMenu = new AddMenu(libraryService, inputProvider, scanner);
-        this.removeMenu = new RemoveMenu(libraryService, scanner);
-        this.showMenu = new ShowAllMenu(libraryService);
+        PlaylistAdd playlistAdder = new PlaylistAdd(libraryService, inputProvider);
+        PlaylistRemove playlistRemover = new PlaylistRemove(inputProvider);
+        PlaylistView playlistViewer = new PlaylistView();
 
-        this.searchMenu = new SearchMenu(libraryService, scanner);
-        this.sortMenu = new SortMenu(libraryService, scanner);
+        this.addMenu = new AddMenu(libraryService, inputProvider, scanner);
+        this.removeMenu = new RemoveMenu(libraryService, inputProvider);
+        this.showMenu = new ShowAllMenu(libraryService);
+        this.searchMenu = new SearchMenu(libraryService, scanner, inputProvider);
+        this.sortMenu = new SortMenu(libraryService, scanner, inputProvider);
         this.filterMenu = new FilterMenu(libraryService, inputProvider);
 
+        this.playlistMenu = new PlaylistMenu(libraryService, scanner, inputProvider,
+                playlistAdder, playlistRemover, playlistViewer);
     }
 
     public void run() {

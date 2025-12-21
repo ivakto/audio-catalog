@@ -13,19 +13,33 @@ public class InputProvider {
     }
 
     public String readString(String prompt) {
-        System.out.print(prompt);
-        String input = scanner.nextLine();
-        return Validator.validateString(input, prompt.replace(": ", ""));
+        while (true) {
+            System.out.print(prompt);
+            String input = scanner.nextLine();
+
+            try {
+                String fieldName = prompt.replace(": ", "").trim();
+                return Validator.validateString(input, fieldName);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage() + " Try again.");
+            }
+        }
     }
 
     public int readInt(String prompt) {
         while (true) {
             System.out.print(prompt);
+            String input = scanner.nextLine();
+
             try {
-                String input = scanner.nextLine();
-                return Integer.parseInt(input);
+                int value = Integer.parseInt(input);
+                String fieldName = prompt.replace(": ", "").trim();
+                return Validator.validatePositive(value, fieldName);
+
             } catch (NumberFormatException e) {
-                System.out.println("Invalid number!");
+                System.out.println("Invalid input! Please enter a number.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage() + " Try again.");
             }
         }
     }
