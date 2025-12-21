@@ -4,7 +4,7 @@ public class Validator {
 
     public static String validateString(String value, String fieldName) {
 
-        if (value == null || value.isEmpty()) {
+        if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException(fieldName + " cannot be null or empty!");
         }
         return value;

@@ -43,4 +43,21 @@ public class InputProvider {
             }
         }
     }
+
+    public int readRating(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String input = scanner.nextLine();
+
+            try {
+                int value = Integer.parseInt(input);
+                String fieldName = prompt.replace(": ", "").trim();
+                return Validator.validateRating(value, fieldName);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a number.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage() + " Try again.");
+            }
+        }
+    }
 }
