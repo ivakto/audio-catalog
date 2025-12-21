@@ -16,6 +16,7 @@ public class Search {
         return items.stream()
                 .filter(item -> {
                     R value = getter.apply(item);
+                    if (value == null) return false;
                     return value.toString().toLowerCase().contains(searchTermLowerC);
                 })
                 .toList();
