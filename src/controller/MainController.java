@@ -12,7 +12,7 @@ public class MainController {
 
     private final AddMenu addMenu;
     private final RemoveMenu removeMenu;
-    private final ShowAllMenu showMenu;
+    private final ShowMenu showMenu;
     private final SearchMenu searchMenu;
     private final SortMenu sortMenu;
     private final FilterMenu filterMenu;
@@ -30,7 +30,7 @@ public class MainController {
 
         this.addMenu = new AddMenu(libraryService, inputProvider, scanner);
         this.removeMenu = new RemoveMenu(libraryService, inputProvider);
-        this.showMenu = new ShowAllMenu(libraryService);
+        this.showMenu = new ShowMenu(libraryService);
         this.searchMenu = new SearchMenu(libraryService, scanner, inputProvider);
         this.sortMenu = new SortMenu(libraryService, scanner, inputProvider);
         this.filterMenu = new FilterMenu(libraryService, inputProvider);

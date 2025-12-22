@@ -6,10 +6,10 @@ import utils.ConsolePrinter;
 
 import java.util.List;
 
-public class ShowAllMenu {
+public class ShowMenu {
     private final LibraryService libraryService;
 
-    public ShowAllMenu(LibraryService libraryService) {
+    public ShowMenu(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
