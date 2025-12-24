@@ -1,6 +1,7 @@
 package service;
 
 import entity.AudioItem;
+import io.LibraryRepository;
 import utils.Filter;
 import utils.Search;
 import utils.Sort;
@@ -11,9 +12,12 @@ import java.util.function.Function;
 
 public class LibraryService {
     private final List<AudioItem> library;
+    private final LibraryRepository repository;
+
 
     public LibraryService() {
-        this.library = new ArrayList<>();
+        this.repository = new LibraryRepository();
+        this.library = this.repository.load();
     }
 
     public void addAudioItem(AudioItem item) {
@@ -62,5 +66,9 @@ public class LibraryService {
 
     public <R> List<AudioItem> filter(Function<? super AudioItem, R> getter, R value) {
         return Filter.filter(library, getter, value);
+    }
+
+    public void saveLibrary() {
+        repository.save(library);
     }
 }

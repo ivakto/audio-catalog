@@ -18,11 +18,12 @@ public class MainController {
     private final FilterMenu filterMenu;
     private final PlaylistMenu playlistMenu;
     private final Scanner scanner;
+    private final LibraryService libraryService;
 
     public MainController() {
         this.scanner = new Scanner(System.in);
         InputProvider inputProvider = new InputProvider(scanner);
-        LibraryService libraryService = new LibraryService();
+        this.libraryService = new LibraryService();
 
         PlaylistAdd playlistAdder = new PlaylistAdd(libraryService, inputProvider);
         PlaylistRemove playlistRemover = new PlaylistRemove(inputProvider);
@@ -65,6 +66,8 @@ public class MainController {
                 case "6" -> sortMenu.show();
                 case "7" -> playlistMenu.show();
                 case "0" -> {
+                    System.out.println("Goodbye!");
+                    libraryService.saveLibrary(); // <--- ВАЖНО: Този ред липсваше!
                     System.out.println("Goodbye!");
                     running = false;
                 }
