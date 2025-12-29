@@ -25,4 +25,16 @@ public class Validator {
         }
         return value;
     }
+
+    public static int validateYear(int year, String fieldName) {
+        int currentYear = LocalDate.now().getYear();
+
+        if (year < 0) {
+            throw new IllegalArgumentException(fieldName + " cannot be negative!");
+        }
+        if (year > currentYear) {
+            throw new IllegalArgumentException(fieldName + " cannot be in the future! Current year is " + currentYear);
+        }
+        return year;
+    }
 }

@@ -41,7 +41,7 @@ public class LibraryRepository {
         if (!file.exists()) return library;
 
         try (CSVReader reader = new CSVReader(new FileReader(FILE_NAME))) {
-            reader.readNext(); 
+            reader.readNext();
 
             String[] row;
             while ((row = reader.readNext()) != null) {
@@ -115,7 +115,6 @@ public class LibraryRepository {
     }
 
     private String[] convertItemToArray(AudioItem item) {
-        // Вече item.getId() връща String, така че махаме .toString()
         String id = item.getId();
         String type = "";
         String title = item.getTitle();
