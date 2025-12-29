@@ -17,7 +17,7 @@ public class PlaylistCreator implements  ItemCreator{
         String author = input.readString("Author: ");
         String genre = input.readString("Genre: ");
         int year = input.readReleaseYear("Release Year: ");
-        int duration = input.readInt("Total Duration (sec): ");
+        int duration = input.readDuration("Total Duration (sec): ");
 
         String answer = input.readString("Is it public? (yes/no): ");
         boolean isPublic = answer.equalsIgnoreCase("yes");

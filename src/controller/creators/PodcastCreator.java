@@ -13,7 +13,7 @@ public class PodcastCreator implements ItemCreator{
         String author = input.readString("Author: ");
         String genre = input.readString("Topic/Genre: ");
         int year = input.readReleaseYear("Year: ");
-        int duration = input.readInt("Duration (sec): ");
+        int duration = input.readDuration("Duration (sec): ");
 
         int episodes = input.readInt("Number of Episodes: ");
         String description = input.readString("Description: ");

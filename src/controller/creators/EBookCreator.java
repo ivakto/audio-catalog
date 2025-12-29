@@ -14,7 +14,7 @@ public class EBookCreator implements ItemCreator{
         String author = input.readString("Author: ");
         String genre = input.readString("Genre: ");
         int year = input.readReleaseYear("Release Year: ");
-        int duration = input.readInt("Total Duration (sec): ");
+        int duration = input.readDuration("Total Duration (sec): ");
 
         int chapters = input.readInt("Number of Chapters: ");
         String language = input.readString("Language: ");

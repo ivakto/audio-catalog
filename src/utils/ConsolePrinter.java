@@ -17,16 +17,17 @@ public class ConsolePrinter {
 
         int index = 1;
         for (AudioItem item : items) {
-            System.out.printf("%-4s %-25s %-16s %-6d %-11s %d sec%n",
+            String formattedTime = formatDuration(item.getDurationSec());
+            System.out.printf("%-4s %-25s %-16s %-6d %-11s %s%n",
                     index++ + ".",
                     truncate(item.getTitle(), 23),
                     truncate(item.getAuthor(), 14),
                     item.getReleaseYear(),
                     truncate(item.getGenre(), 9),
-                    item.getDurationSec()
+                    formattedTime
             );
         }
-        System.out.println(); // Празен ред за въздух най-долу
+        System.out.println();
     }
 
     private static String truncate(String text, int maxLength) {
@@ -35,6 +36,20 @@ public class ConsolePrinter {
             return text;
         }
         return text.substring(0, maxLength - 2) + "..";
+    }
+
+    private static String formatDuration(int totalSeconds) {
+        if (totalSeconds < 3600) {
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+            return String.format("%d:%02d min", minutes, seconds);
+        } else {
+            int hours = totalSeconds / 3600;
+            int remainingMinutes = (totalSeconds % 3600) / 60;
+            int seconds = totalSeconds % 60;
+
+            return String.format("%d:%02d:%02d h", hours, remainingMinutes, seconds);
+        }
     }
 }
 

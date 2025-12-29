@@ -39,4 +39,11 @@ public class Validator {
         }
         return year;
     }
+
+    public static int validateDuration(int duration, String fieldName) {
+        if (duration <= 0) {
+            throw new IllegalArgumentException(fieldName + " must be greater than 0!");
+        }
+        return duration;
+    }
 }

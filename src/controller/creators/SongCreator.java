@@ -14,7 +14,7 @@ public class SongCreator implements ItemCreator{
         String author = input.readString("Artist: ");
         String genre = input.readString("Genre: ");
         int year = input.readReleaseYear("Release Year: ");
-        int duration = input.readInt("Duration (sec): ");
+        int duration = input.readDuration("Duration (sec): ");
 
         String lyrics = input.readString("Lyrics (short excerpt): ");
         int rating = input.readRating("Rating (0-10): ");
