@@ -23,6 +23,7 @@ public class LibraryService {
     public void addAudioItem(AudioItem item) {
         if (item != null) {
             library.add(item);
+            repository.save(library);
             System.out.println("Successfully added: " + item.getTitle());
         } else {
             System.out.println("Error: Cannot add null item.");
@@ -33,6 +34,7 @@ public class LibraryService {
         boolean removed = library.removeIf(item -> item.getTitle().equalsIgnoreCase(title));
 
         if (removed) {
+            repository.save(library);
             System.out.println("Removed item(s) matching title: " + title);
         } else {
             System.out.println("Item not found with title: " + title);
