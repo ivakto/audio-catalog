@@ -28,23 +28,50 @@ public class SearchMenu {
         System.out.println("3. By Genre");
         System.out.println("4. By Category");
         System.out.println("0. Back");
-        System.out.print("Choose criteria: ");
+        System.out.print("\nYour choice: ");
 
-        String choice = scanner.nextLine();
-        if (choice.equals("0")) return;
+        String input = scanner.nextLine();
+        if (input.equals("0")) return;
 
-        String query = inputProvider.readString("Enter text to search: ");
+        String[] choices = input.split(",");
 
-        List<AudioItem> results = switch (choice) {
-            case "1" -> service.search(AudioItem::getTitle, query);
-            case "2" -> service.search(AudioItem::getAuthor, query);
-            case "3" -> service.search(AudioItem::getGenre, query);
-            case "4" -> service.search(AudioItem::getCategory, query);
-            default -> {
-                System.out.println("Invalid criteria!");
-                yield List.of(); // Връща празен списък при грешка
+        String searchTitle = null;
+        String searchAuthor = null;
+        String searchGenre = null;
+        String searchCategory = null;
+
+        boolean validSelection = false;
+
+        for (String choice : choices) {
+            String c = choice.trim();
+
+            switch (c) {
+                case "1" -> {
+                    searchTitle = inputProvider.readString("Enter Title part: ");
+                    validSelection = true;
+                }
+                case "2" -> {
+                    searchAuthor = inputProvider.readString("Enter Author part: ");
+                    validSelection = true;
+                }
+                case "3" -> {
+                    searchGenre = inputProvider.readString("Enter Genre part: ");
+                    validSelection = true;
+                }
+                case "4" -> {
+                    searchCategory = inputProvider.readString("Enter Category part: ");
+                    validSelection = true;
+                }
             }
-        };
+        }
+
+        if (!validSelection) {
+            System.out.println("No valid criteria selected.");
+            return;
+        }
+
+        System.out.println("\nSearching...");
+        List<AudioItem> results = service.searchFlexible(searchTitle, searchAuthor, searchGenre, searchCategory);
 
         ConsolePrinter.printList(results, "SEARCH RESULTS");
     }

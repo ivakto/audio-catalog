@@ -30,14 +30,25 @@ public class LibraryService {
         }
     }
 
-    public void removeAudioItem(String title) {
-        boolean removed = library.removeIf(item -> item.getTitle().equalsIgnoreCase(title));
+    public List<AudioItem> findMatches(String title) {
+        List<AudioItem> matches = new ArrayList<>();
+
+        for (AudioItem item : library) {
+            if (item.getTitle().equalsIgnoreCase(title)) {
+                matches.add(item);
+            }
+        }
+        return matches;
+    }
+
+    public void removeById(String id) {
+        boolean removed = library.removeIf(item -> item.getId().equals(id));
 
         if (removed) {
             repository.save(library);
-            System.out.println("Removed item(s) matching title: " + title);
+            System.out.println("Item removed successfully.");
         } else {
-            System.out.println("Item not found with title: " + title);
+            System.out.println("Item not found.");
         }
     }
 
@@ -60,6 +71,28 @@ public class LibraryService {
 
     public <R> List<AudioItem> search(Function<AudioItem, R> getter, String query) {
         return Search.search(library, getter, query);
+    }
+
+    public List<AudioItem> searchFlexible(String title, String author, String genre, String category) {
+        List<AudioItem> results = new ArrayList<>();
+
+        for (AudioItem item : library) {
+            boolean matches = title == null || containsIgnoreCase(item.getTitle(), title);
+
+            if (author != null && !containsIgnoreCase(item.getAuthor(), author)) matches = false;
+            if (genre != null && !containsIgnoreCase(item.getGenre(), genre)) matches = false;
+            if (category != null && !containsIgnoreCase(item.getCategory(), category)) matches = false;
+
+            if (matches) {
+                results.add(item);
+            }
+        }
+        return results;
+    }
+
+    private boolean containsIgnoreCase(String value, String search) {
+        if (value == null) return false; // Защита от празни полета
+        return value.toLowerCase().contains(search.toLowerCase());
     }
 
     public <R extends Comparable<R>> List<AudioItem> sort(Function<AudioItem, R> getter, boolean isAscending) {
