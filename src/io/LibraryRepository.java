@@ -27,7 +27,6 @@ public class LibraryRepository {
                 String[] data = convertItemToArray(item);
                 writer.writeNext(data);
             }
-            System.out.println("Data saved successfully to " + FILE_NAME);
 
         } catch (IOException e) {
             throw new RuntimeException("Error writing to CSV file", e);

@@ -18,10 +18,10 @@ public abstract class AudioItem {
         this.title = Validator.validateString(title, "Title");
         this.id = UUID.randomUUID().toString();
         this.genre = Validator.validateString(genre, "Genre");
-        this.durationSec = Validator.validatePositive(durationSec, "Duration");
+        this.durationSec = Validator.validateDuration(durationSec, "Duration");
         this.category = Validator.validateString(category, "Category");
         this.author = Validator.validateString(author, "Author");
-        this.releaseYear = Validator.validatePositive(releaseYear, "Release year");
+        this.releaseYear = Validator.validateYear(releaseYear, "Release year");
     }
 
     public String getId() {

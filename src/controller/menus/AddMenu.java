@@ -7,7 +7,7 @@ import service.LibraryService;
 
 import java.util.Scanner;
 
-public class AddMenu {
+public class AddMenu implements Menu{
 
     private final LibraryService libraryService;
     private final InputProvider inputProvider;
@@ -19,6 +19,7 @@ public class AddMenu {
         this.scanner = scanner;
     }
 
+    @Override
     public void show() {
         System.out.println("\nADD NEW ITEM");
         System.out.println("1. Song");

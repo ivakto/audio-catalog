@@ -1,5 +1,6 @@
 "ID","TYPE","TITLE","GENRE","DURATION","CATEGORY","AUTHOR","YEAR","RATING","LYRICS","CHAPTERSNUM","LANGUAGE","EPISODESNUM","DESCRIPTION","LABEL","SONGSLIST","ISPUBLIC","ITEMSLIST"
 "d5be0a7a-0363-459b-bb43-b67723ec15d5","SONG","Bohemian Rapsody","Rock","354","Song","Queen","1975","7","Mama, just killed a man...","","","","","","","",""
 "8ef20a47-1cc2-4503-9265-3185cbc7087d","PODCAST","The Java Life","Education","1800","Podcast","Tech Guru","2024","","","","","42","Everything about Java and Clean Code.","","","",""
-"9a292daa-cc06-455c-808e-1faf37176bb3","PLAYLIST","My Playlist 1","Mix","20000","Playlist","Iva T.","2025","","","","","","","","","true","[2fcb7efd-8fe2-4a0f-9147-c56b68cc312a]"
+"9a292daa-cc06-455c-808e-1faf37176bb3","PLAYLIST","My Playlist 1","Mix","20000","Playlist","Iva T.","2025","","","","","","","","","true","[8ef20a47-1cc2-4503-9265-3185cbc7087d]"
 "d3da414c-f1a3-4ff3-b61c-f0473093c3c4","SONG","Harry Potter","Top","3222","Song","J.K.Rowling","2025","2","lalalla","","","","","","","",""
+"3a8cfcf7-29f0-4f99-9863-b3e02284673a","EBOOK","Harry Potter","Fantasy","8999","EBook","J.K.Rowling","2023","","","3","bulgarian","","","","","",""

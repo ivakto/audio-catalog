@@ -10,7 +10,7 @@ import utils.Validator;
 import java.util.List;
 import java.util.Scanner;
 
-public class SearchMenu {
+public class SearchMenu implements Menu{
     private final LibraryService service;
     private final Scanner scanner;
     private final InputProvider inputProvider;
@@ -21,58 +21,66 @@ public class SearchMenu {
         this.inputProvider = inputProvider;
     }
 
+    @Override
     public void show() {
-        System.out.println("\nMENU SEARCH");
-        System.out.println("1. By Title");
-        System.out.println("2. By Author");
-        System.out.println("3. By Genre");
-        System.out.println("4. By Category");
-        System.out.println("0. Back");
-        System.out.print("\nYour choice: ");
+        while (true) {
+            System.out.println("\nMENU SEARCH");
+            System.out.println("1. By Title");
+            System.out.println("2. By Author");
+            System.out.println("3. By Genre");
+            System.out.println("4. By Category");
+            System.out.println("0. Back");
+            System.out.print("\nYour choice: ");
 
-        String input = scanner.nextLine();
-        if (input.equals("0")) return;
+            String input = scanner.nextLine().trim();
+            if (input.equals("0")) return;
 
-        String[] choices = input.split(",");
+            String[] choices = input.split(",");
 
-        String searchTitle = null;
-        String searchAuthor = null;
-        String searchGenre = null;
-        String searchCategory = null;
+            for (String choice : choices) {
+                if (choice.trim().equals("0")) return;
+            }
 
-        boolean validSelection = false;
+            String searchTitle = null;
+            String searchAuthor = null;
+            String searchGenre = null;
+            String searchCategory = null;
 
-        for (String choice : choices) {
-            String c = choice.trim();
+            boolean validSelection = false;
 
-            switch (c) {
-                case "1" -> {
-                    searchTitle = inputProvider.readString("Enter Title part: ");
-                    validSelection = true;
-                }
-                case "2" -> {
-                    searchAuthor = inputProvider.readString("Enter Author part: ");
-                    validSelection = true;
-                }
-                case "3" -> {
-                    searchGenre = inputProvider.readString("Enter Genre part: ");
-                    validSelection = true;
-                }
-                case "4" -> {
-                    searchCategory = inputProvider.readString("Enter Category part: ");
-                    validSelection = true;
+            for (String choice : choices) {
+                String c = choice.trim();
+
+                switch (c) {
+                    case "1" -> {
+                        searchTitle = inputProvider.readString("Enter Title part: ");
+                        validSelection = true;
+                    }
+                    case "2" -> {
+                        searchAuthor = inputProvider.readString("Enter Author part: ");
+                        validSelection = true;
+                    }
+                    case "3" -> {
+                        searchGenre = inputProvider.readString("Enter Genre part: ");
+                        validSelection = true;
+                    }
+                    case "4" -> {
+                        searchCategory = inputProvider.readString("Enter Category part: ");
+                        validSelection = true;
+                    }
                 }
             }
+
+            if (!validSelection) {
+                System.out.println("No valid criteria selected.");
+                continue;
+            }
+
+            System.out.println("\nSearching...");
+            List<AudioItem> results = service.searchFlexible(searchTitle, searchAuthor, searchGenre, searchCategory);
+
+            ConsolePrinter.printList(results, "SEARCH RESULTS");
         }
 
-        if (!validSelection) {
-            System.out.println("No valid criteria selected.");
-            return;
-        }
-
-        System.out.println("\nSearching...");
-        List<AudioItem> results = service.searchFlexible(searchTitle, searchAuthor, searchGenre, searchCategory);
-
-        ConsolePrinter.printList(results, "SEARCH RESULTS");
     }
 }

@@ -6,7 +6,7 @@ import service.LibraryService;
 
 import java.util.List;
 
-public class RemoveMenu {
+public class RemoveMenu implements Menu{
     private final LibraryService libraryService;
     private final InputProvider inputProvider;
 
@@ -15,6 +15,7 @@ public class RemoveMenu {
         this.inputProvider = inputProvider;
     }
 
+    @Override
     public void show() {
         System.out.println("\nREMOVE ITEM");
         String titleToRemove = inputProvider.readString("Enter the exact title of the item to remove: ");

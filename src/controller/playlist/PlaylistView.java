@@ -14,8 +14,7 @@ public class PlaylistView {
         } else {
             int index = 1;
             for (PlaylistInsertable element : playlist.getItemsList()) {
-                if (element instanceof AudioItem) {
-                    AudioItem item = (AudioItem) element;
+                if (element instanceof AudioItem item) {
                     System.out.println(index++ + ". " + item.getTitle() + " (" + item.getAuthor() + ") [" + item.getCategory() + "]");
                 }
             }

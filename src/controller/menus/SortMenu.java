@@ -8,7 +8,7 @@ import utils.ConsolePrinter;
 import java.util.List;
 import java.util.Scanner;
 
-public class SortMenu {
+public class SortMenu implements Menu{
 
     private final LibraryService service;
     private final Scanner scanner;
@@ -18,6 +18,7 @@ public class SortMenu {
         this.scanner = scanner;
     }
 
+    @Override
     public void show() {
         System.out.println("\nSORT MENU");
         System.out.println("1. By Title (A-Z)");
@@ -39,7 +40,7 @@ public class SortMenu {
             case "5" -> service.sort(AudioItem::getDurationSec, true);
             default -> {
                 System.out.println("Invalid sort option!");
-                yield List.of();// най-бърз начин за създаване на празен list
+                yield List.of();
             }
         };
 

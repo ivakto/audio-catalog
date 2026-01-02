@@ -10,7 +10,7 @@ import service.LibraryService;
 
 import java.util.Scanner;
 
-public class PlaylistMenu {
+public class PlaylistMenu implements Menu{
     private final LibraryService libraryService;
     private final Scanner scanner;
     private final InputProvider inputProvider;
@@ -28,6 +28,7 @@ public class PlaylistMenu {
         this.viewer = viewer;
     }
 
+    @Override
     public void show() {
         while (true) {
             System.out.println("\nPLAYLIST MENU");

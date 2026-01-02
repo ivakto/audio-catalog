@@ -33,6 +33,7 @@ public class PlaylistAdd {
 
         if (item instanceof PlaylistInsertable) {
             playlist.getItemsList().add((PlaylistInsertable) item);
+            service.saveLibrary();
             System.out.println("Successfully added '" + item.getTitle() + "' to playlist '" + playlist.getTitle() + "'.");
         } else {
             System.out.println("Error: This item cannot be added to a playlist.");

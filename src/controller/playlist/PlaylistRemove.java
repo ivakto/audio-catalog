@@ -3,13 +3,17 @@ package controller.playlist;
 import controller.InputProvider;
 import entity.AudioItem;
 import entity.Playlist;
-
-import java.util.Scanner;
+import entity.PlaylistInsertable;
+import service.LibraryService;
 
 public class PlaylistRemove {
+
+    private final LibraryService service;
     private final InputProvider inputProvider;
 
-    public PlaylistRemove(InputProvider inputProvider) {
+
+    public PlaylistRemove(LibraryService service, InputProvider inputProvider) {
+        this.service = service;
         this.inputProvider = inputProvider;
     }
 
@@ -22,9 +26,9 @@ public class PlaylistRemove {
             }
             return false;
         });
-        // връща true/false
 
         if (removed) {
+            service.saveLibrary();
             System.out.println("Item removed.");
         } else {
             System.out.println("Item not found inside this playlist.");

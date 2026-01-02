@@ -69,7 +69,7 @@ public class LibraryService {
         return null;
     }
 
-    public <R> List<AudioItem> search(Function<AudioItem, R> getter, String query) {
+    public <R> List<AudioItem> search(Function<? super AudioItem, R> getter, String query) {
         return Search.search(library, getter, query);
     }
 
@@ -91,11 +91,11 @@ public class LibraryService {
     }
 
     private boolean containsIgnoreCase(String value, String search) {
-        if (value == null) return false; // Защита от празни полета
+        if (value == null) return false;
         return value.toLowerCase().contains(search.toLowerCase());
     }
 
-    public <R extends Comparable<R>> List<AudioItem> sort(Function<AudioItem, R> getter, boolean isAscending) {
+    public <R extends Comparable<R>> List<AudioItem> sort(Function<? super AudioItem, R> getter, boolean isAscending) {
         return Sort.sort(library, getter, isAscending);
     }
 

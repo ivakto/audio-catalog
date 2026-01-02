@@ -8,7 +8,7 @@ import utils.ConsolePrinter;
 import java.util.List;
 import java.util.function.Function;
 
-public class FilterMenu {
+public class FilterMenu implements Menu{
 
     private final LibraryService libraryService;
     private final InputProvider inputProvider;
@@ -18,6 +18,7 @@ public class FilterMenu {
         this.inputProvider = inputProvider;
     }
 
+    @Override
     public void show() {
         System.out.println("\nMENU FILTER");
         System.out.println("1. By Title");

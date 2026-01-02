@@ -6,14 +6,15 @@ import utils.ConsolePrinter;
 
 import java.util.List;
 
-public class ShowMenu {
+public class ShowMenu implements Menu{
     private final LibraryService libraryService;
 
     public ShowMenu(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
-    public void showAll() {
+    @Override
+    public void show() {
         List<AudioItem> all = libraryService.getAllItems();
 
         ConsolePrinter.printList(all, "ALL ITEMS");
