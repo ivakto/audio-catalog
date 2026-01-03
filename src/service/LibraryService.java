@@ -69,30 +69,25 @@ public class LibraryService {
         return null;
     }
 
-    public <R> List<AudioItem> search(Function<? super AudioItem, R> getter, String query) {
-        return Search.search(library, getter, query);
-    }
-
     public List<AudioItem> searchFlexible(String title, String author, String genre, String category) {
-        List<AudioItem> results = new ArrayList<>();
+        List<AudioItem> results = new ArrayList<>(library);
 
-        for (AudioItem item : library) {
-            boolean matches = title == null || containsIgnoreCase(item.getTitle(), title);
+        if (title != null && !title.isEmpty()) {
+            results = Search.search(results, AudioItem::getTitle, title);
+        }
 
-            if (author != null && !containsIgnoreCase(item.getAuthor(), author)) matches = false;
-            if (genre != null && !containsIgnoreCase(item.getGenre(), genre)) matches = false;
-            if (category != null && !containsIgnoreCase(item.getCategory(), category)) matches = false;
+        if (author != null && !author.isEmpty()) {
+            results = Search.search(results, AudioItem::getAuthor, author);
+        }
 
-            if (matches) {
-                results.add(item);
-            }
+        if (genre != null && !genre.isEmpty()) {
+            results = Search.search(results, AudioItem::getGenre, genre);
+        }
+
+        if (category != null && !category.isEmpty()) {
+            results = Search.search(results, AudioItem::getCategory, category);
         }
         return results;
-    }
-
-    private boolean containsIgnoreCase(String value, String search) {
-        if (value == null) return false;
-        return value.toLowerCase().contains(search.toLowerCase());
     }
 
     public <R extends Comparable<R>> List<AudioItem> sort(Function<? super AudioItem, R> getter, boolean isAscending) {
