@@ -17,12 +17,13 @@ public class PlaylistCreator implements  ItemCreator{
         String genre = input.readString("Genre: ");
         int year = input.readReleaseYear("Release Year: ");
         int duration = input.readDuration("Total Duration (sec): ");
+        String category = input.readString("Category: ");
 
         String answer = input.readString("Is it public? (yes/no): ");
         boolean isPublic = answer.equalsIgnoreCase("yes");
 
         ArrayList<PlaylistInsertable> playlist = new ArrayList<>();
 
-        return new Playlist(title, author, genre, duration, "Playlist", year, isPublic, playlist);
+        return new Playlist(title, author, genre, duration, category, year, isPublic, playlist);
     }
 }

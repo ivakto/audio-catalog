@@ -14,10 +14,11 @@ public class PodcastCreator implements ItemCreator{
         String genre = input.readString("Topic/Genre: ");
         int year = input.readReleaseYear("Year: ");
         int duration = input.readDuration("Duration (sec): ");
+        String category = input.readString("Category: ");
 
         int episodes = input.readInt("Number of Episodes: ");
         String description = input.readString("Description: ");
 
-        return new Podcast(title, author, genre, duration, "Podcast", year, episodes, description);
+        return new Podcast(title, author, genre, duration, category, year, episodes, description);
     }
 }

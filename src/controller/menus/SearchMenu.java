@@ -5,7 +5,7 @@ import controller.InputProvider;
 import entity.AudioItem;
 import service.LibraryService;
 import utils.ConsolePrinter;
-import utils.Validator;
+
 
 import java.util.List;
 import java.util.Scanner;
@@ -65,7 +65,7 @@ public class SearchMenu implements Menu{
                         validSelection = true;
                     }
                     case "4" -> {
-                        searchCategory = inputProvider.readString("Enter Category part: ");
+                        searchCategory = inputProvider.readString("Enter Category: ");
                         validSelection = true;
                     }
                 }

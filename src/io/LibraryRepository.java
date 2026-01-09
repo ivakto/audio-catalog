@@ -66,7 +66,7 @@ public class LibraryRepository {
             String title = row[2];
             String genre = row[3];
             int duration = Integer.parseInt(row[4]);
-            String category = row[5]; // ЕТО Я КАТЕГОРИЯТА
+            String category = row[5];
             String author = row[6];
             int releaseYear = Integer.parseInt(row[7]);
 
@@ -119,7 +119,7 @@ public class LibraryRepository {
         String title = item.getTitle();
         String genre = item.getGenre();
         String duration = String.valueOf(item.getDurationSec());
-        String category = (item.getCategory() == null) ? "" : item.getCategory();
+        String category = item.getCategory();
         String author = item.getAuthor();
         String releaseYear = String.valueOf(item.getReleaseYear());
 
@@ -157,12 +157,11 @@ public class LibraryRepository {
 
     private void reconnectPlaylistItem(List<AudioItem> library, String fileName) {
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
-            reader.readNext(); // Skip Header
+            reader.readNext();
             String[] row;
 
             while ((row = reader.readNext()) != null) {
                 if ("PLAYLIST".equals(row[1]) || "MUSICALBUM".equals(row[1])) {
-                    // Тук ID-то е String
                     String containerId = row[0];
                     String idsString = "PLAYLIST".equals(row[1]) ? row[17] : row[15];
 

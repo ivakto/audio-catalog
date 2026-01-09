@@ -15,10 +15,11 @@ public class SongCreator implements ItemCreator{
         String genre = input.readString("Genre: ");
         int year = input.readReleaseYear("Release Year: ");
         int duration = input.readDuration("Duration (sec): ");
+        String category = input.readString("Category: ");
 
         String lyrics = input.readString("Lyrics (short excerpt): ");
         int rating = input.readRating("Rating (0-10): ");
 
-        return new Song(title, author, genre, duration, "Song", year, rating, lyrics);
+        return new Song(title, author, genre, duration, category, year, rating, lyrics);
     }
 }

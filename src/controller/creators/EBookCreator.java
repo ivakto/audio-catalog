@@ -1,7 +1,6 @@
 package controller.creators;
 
 import controller.InputProvider;
-import entity.AudioItem;
 import entity.EBook;
 
 public class EBookCreator implements ItemCreator{
@@ -15,10 +14,11 @@ public class EBookCreator implements ItemCreator{
         String genre = input.readString("Genre: ");
         int year = input.readReleaseYear("Release Year: ");
         int duration = input.readDuration("Total Duration (sec): ");
+        String category = input.readString("Category: ");
 
         int chapters = input.readInt("Number of Chapters: ");
         String language = input.readString("Language: ");
 
-        return new EBook(title, author, genre, duration, "EBook", year, chapters, language);
+        return new EBook(title, author, genre, duration, category, year, chapters, language);
     }
 }

@@ -1,7 +1,6 @@
 package controller.creators;
 
 import controller.InputProvider;
-import entity.AudioItem;
 import entity.MusicAlbum;
 import entity.Song;
 
@@ -17,6 +16,7 @@ public class MusicAlbumCreator implements ItemCreator{
         String author = input.readString("Artist: ");
         String genre = input.readString("Genre: ");
         int year = input.readReleaseYear("Release Year: ");
+        String category = input.readString("Category: ");
 
         String label = input.readString("Record Label: ");
         ArrayList<Song> songs = new ArrayList<>();
@@ -36,6 +36,6 @@ public class MusicAlbumCreator implements ItemCreator{
 
         System.out.println("Calculated Total Duration: " + totalDuration + " seconds.");
 
-        return new MusicAlbum(title, author, genre, totalDuration, "MusicAlbum", year, label, songs);
+        return new MusicAlbum(title, author, genre, totalDuration, category, year, label, songs);
     }
 }
